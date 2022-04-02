@@ -14,6 +14,7 @@ module.exports = {
           '@interfaces': './src/interfaces',
           '@navigators': './src/navigators',
           '@screens': './src/screens',
+          '@services': './src/services',
         },
       },
     ],

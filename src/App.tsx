@@ -8,14 +8,17 @@
  * @format
  */
 
-import {AppHeader} from 'components';
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
+import {AppHeader} from 'components';
+import {PokemonProvider} from 'contexts/pokemon';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.backgroundStyle}>
-      <AppHeader />
+      <PokemonProvider>
+        <AppHeader />
+      </PokemonProvider>
     </SafeAreaView>
   );
 };
