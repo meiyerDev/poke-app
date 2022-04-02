@@ -10,14 +10,14 @@
 
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import {AppHeader} from 'components';
 import {PokemonProvider} from 'contexts/pokemon';
+import {MainNavigator} from 'navigators';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.backgroundStyle}>
       <PokemonProvider>
-        <AppHeader />
+        <MainNavigator />
       </PokemonProvider>
     </SafeAreaView>
   );
@@ -28,13 +28,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
   },
-  containerApp: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    paddingHorizontal: '2.5%',
-    paddingTop: '5%',
-  },
+  // containerApp: {
+  //   flexDirection: 'row',
+  //   flexWrap: 'wrap',
+  //   justifyContent: 'space-around',
+  //   paddingHorizontal: '2.5%',
+  //   paddingTop: '5%',
+  // },
 });
 
 export default App;

@@ -14,7 +14,6 @@ export const AppHeader = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: 'red',
     alignItems: 'center',
     paddingTop: 40,
     paddingBottom: 10,
