@@ -12,11 +12,14 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.1",
+    "module-resolver": "^1.0.0",
     "react": "17.0.2",
     "react-native": "0.67.3",
+    "react-native-dotenv": "^3.3.1",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-safe-area-context": "^4.2.4",
-    "react-native-screens": "^3.13.1"
+    "react-native-screens": "^3.13.1",
+    "react-native-svg": "^12.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

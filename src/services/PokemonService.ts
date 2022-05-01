@@ -1,7 +1,11 @@
-const get = (
-  url: string = 'https://pokeapi.co/api/v2/pokemon-species',
-): Promise<Response> => {
-  return fetch(url).then(response => response.json());
+import {BASE_POKEMON_API_URL} from '@env';
+import {makePokemonsFromResponse} from 'adapters';
+import {IPokemonState} from 'interfaces';
+
+const get = (url?: string): Promise<IPokemonState> => {
+  return fetch(url ?? BASE_POKEMON_API_URL)
+    .then(response => response.json())
+    .then(makePokemonsFromResponse);
 };
 
 export const PokemonService = {

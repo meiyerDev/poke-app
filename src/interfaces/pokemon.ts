@@ -1,6 +1,6 @@
-export interface IPokemon {
-  id: string;
+export type IPokemon = {
+  id: number;
   name: string;
   url: string;
-  front_default?: string;
-}
+  front_default: string;
+};
