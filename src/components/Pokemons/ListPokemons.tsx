@@ -25,6 +25,7 @@ export const ListPokemons = () => {
 
 const styles = StyleSheet.create({
   container: {
+    display: 'flex',
     justifyContent: 'space-around',
   },
 });

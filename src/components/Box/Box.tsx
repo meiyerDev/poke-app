@@ -1,14 +1,25 @@
-import React, {FC} from 'react';
+import React, {FC, useMemo} from 'react';
 import {StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-export const Box: FC = ({children}) => {
+type Props = {
+  isActive?: boolean;
+};
+
+export const Box: FC<Props> = ({children, isActive}) => {
+  const gradientColors = useMemo<string[]>(
+    () =>
+      isActive
+        ? ['rgb(237, 185, 230)', 'rgb(226, 73, 255)']
+        : ['rgb(255, 197, 249)', 'rgb(233, 97, 255)'],
+    [isActive],
+  );
   return (
     <LinearGradient
       start={{x: 0.25, y: 0.8}}
       end={{x: 0.65, y: 0}}
-      colors={['#FFC5F9', '#E961FF']}
-      style={styles.container}>
+      colors={gradientColors}
+      style={[styles.container, isActive && styles.containerActive]}>
       {children}
     </LinearGradient>
   );
@@ -16,11 +27,13 @@ export const Box: FC = ({children}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F289FD',
-    width: '45%',
-    height: 128,
+    flex: 1,
+    margin: 8,
+    minHeight: 128,
     borderRadius: 24,
-    marginVertical: '3%',
+  },
+  containerActive: {
+    elevation: 6,
   },
 });
 
