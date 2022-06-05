@@ -2,23 +2,25 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AppHeader} from 'components';
-import {Home} from 'screens';
+import {Home, Pokemon} from 'screens';
 import {light} from 'themes';
+import {RootStackParamList} from 'interfaces';
 
-const Stack = createNativeStackNavigator();
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 export const MainNavigator = () => {
   return (
     <NavigationContainer theme={light}>
-      <Stack.Navigator
+      <RootStack.Navigator
         initialRouteName="Home"
         screenOptions={{
           headerTitle: () => <AppHeader />,
           headerBackVisible: false,
           headerShadowVisible: false,
         }}>
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
+        <RootStack.Screen name="Home" component={Home} />
+        <RootStack.Screen name="Pokemon" component={Pokemon} />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 };

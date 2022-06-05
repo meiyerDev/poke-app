@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {TouchableWithoutFeedback, View, StyleSheet} from 'react-native';
 import {Box, BoxTitle, BoxImage} from 'components/Box';
 import {IPokemon} from 'interfaces';
+import {useNavigation} from '@react-navigation/native';
 
 type Props = {
   item: IPokemon;
@@ -10,8 +11,10 @@ type Props = {
 export const BoxPokemon = ({item}: Props) => {
   const [isPress, setIsPress] = useState(false);
 
+  const navigation = useNavigation();
+
   const onPress = () => {
-    // Alert.alert('Press item', `Pokemon selected: ${item.name}`);
+    navigation.navigate('Pokemon', {pokemon: item});
   };
 
   return (
