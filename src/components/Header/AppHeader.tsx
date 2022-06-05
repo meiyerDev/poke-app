@@ -6,7 +6,9 @@ import {InputSearch} from 'components/Input';
 export const AppHeader = () => {
   return (
     <View style={styles.container}>
-      <AppLogo />
+      <View style={styles.logoContainer}>
+        <AppLogo />
+      </View>
       <InputSearch />
     </View>
   );
@@ -14,9 +16,12 @@ export const AppHeader = () => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
+    flex: 1,
     paddingTop: 40,
     paddingBottom: 10,
+  },
+  logoContainer: {
+    alignItems: 'center',
   },
 });
 

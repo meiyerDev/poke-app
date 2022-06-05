@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 160,
     height: 60,
+    transform: [{translateX: -20}],
   },
 });
 
