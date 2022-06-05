@@ -12,5 +12,3 @@ const styles = StyleSheet.create({
     transform: [{translateX: -20}],
   },
 });
-
-export default AppLogo;

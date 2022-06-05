@@ -42,5 +42,3 @@ const styles = StyleSheet.create({
     color: '#E684FF',
   },
 });
-
-export default BoxTitle;

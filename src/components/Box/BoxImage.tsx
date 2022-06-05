@@ -21,5 +21,3 @@ const styles = StyleSheet.create({
     maxHeight: 90,
   },
 });
-
-export default BoxImage;

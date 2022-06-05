@@ -1,3 +1,3 @@
-export {Box} from './Box';
-export {BoxTitle} from './BoxTitle';
-export {BoxImage} from './BoxImage';
+export * from './Box';
+export * from './BoxImage';
+export * from './BoxTitle';

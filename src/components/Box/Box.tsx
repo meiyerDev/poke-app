@@ -36,5 +36,3 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
 });
-
-export default Box;

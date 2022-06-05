@@ -1,4 +1,6 @@
-export {AppHeader} from './Header/AppHeader';
-export {AppLogo} from './Logo';
-export {BoxTitle, Box, BoxImage} from './Box';
+export * from './Box';
+export * from './Header';
+export * from './Input';
+export * from './Layouts';
+export * from './Logo';
 export * from './Pokemons';
