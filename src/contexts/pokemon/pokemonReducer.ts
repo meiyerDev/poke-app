@@ -1,4 +1,4 @@
-import {IPokemon} from 'interfaces/pokemon';
+import {IPokemon} from 'interfaces';
 import {IPokemonState} from '.';
 
 export enum PokemonActions {

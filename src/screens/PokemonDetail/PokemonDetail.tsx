@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-export const Pokemon = () => {
+export const PokemonDetail = () => {
   return <Text>Pokemon</Text>;
 };

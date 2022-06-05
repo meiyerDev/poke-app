@@ -10,15 +10,12 @@
 
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import {PokemonProvider} from 'contexts/pokemon';
 import {MainNavigator} from 'navigators';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.backgroundStyle}>
-      <PokemonProvider>
-        <MainNavigator />
-      </PokemonProvider>
+      <MainNavigator />
     </SafeAreaView>
   );
 };

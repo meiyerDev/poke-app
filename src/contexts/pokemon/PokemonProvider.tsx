@@ -1,5 +1,5 @@
-import React, {FC, useCallback, useEffect, useReducer} from 'react';
-import {IPokemon} from 'interfaces/pokemon';
+import React, {FC, useCallback, useReducer} from 'react';
+import {IPokemon} from 'interfaces';
 import {PokemonContext, pokemonReducer, PokemonActions} from '.';
 import {PokemonService} from 'services';
 
@@ -22,38 +22,29 @@ const POKEMON_INITIAL_STATE: IPokemonState = {
 export const PokemonProvider: FC = ({children}) => {
   const [state, dispatch] = useReducer(pokemonReducer, POKEMON_INITIAL_STATE);
 
-  const getPokemons = useCallback(async () => {
-    try {
-      const {
-        meta: {nextPage},
-        results,
-      } = await PokemonService.get();
+  const getPokemons = useCallback(() => {
+    return PokemonService.get().then(({meta: {nextPage}, results}) => {
       dispatch({
         type: PokemonActions.setAll,
         payload: {pokemons: results, nextPage},
       });
-    } catch (e) {}
+    });
   }, []);
 
   const getNextPage = async () => {
     if (!state.meta.nextPage) {
       return;
     }
-    try {
-      const {
-        meta: {nextPage},
-        results,
-      } = await PokemonService.get(state.meta.nextPage);
-      dispatch({
-        type: PokemonActions.setMore,
-        payload: {pokemons: results, nextPage},
-      });
-    } catch (e) {}
-  };
 
-  useEffect(() => {
-    getPokemons();
-  }, [getPokemons]);
+    return PokemonService.get(state.meta.nextPage).then(
+      ({meta: {nextPage}, results}) => {
+        dispatch({
+          type: PokemonActions.setMore,
+          payload: {pokemons: results, nextPage},
+        });
+      },
+    );
+  };
 
   return (
     <PokemonContext.Provider value={{...state, getPokemons, getNextPage}}>

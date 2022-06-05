@@ -1,2 +1,3 @@
 export * from './Pokedex';
-export * from './Pokemon';
+export * from './PokemonDetail';
+export * from './PokemonList';
