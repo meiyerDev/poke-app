@@ -1,8 +1,7 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {AppHeader} from 'components';
-import {Home, Pokemon} from 'screens';
+import {Pokedex} from 'screens';
 import {light} from 'themes';
 import {RootStackParamList} from 'interfaces';
 
@@ -12,14 +11,11 @@ export const MainNavigator = () => {
   return (
     <NavigationContainer theme={light}>
       <RootStack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Pokedex"
         screenOptions={{
-          headerTitle: () => <AppHeader />,
-          headerBackVisible: false,
-          headerShadowVisible: false,
+          headerShown: false,
         }}>
-        <RootStack.Screen name="Home" component={Home} />
-        <RootStack.Screen name="Pokemon" component={Pokemon} />
+        <RootStack.Screen name="Pokedex" component={Pokedex} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

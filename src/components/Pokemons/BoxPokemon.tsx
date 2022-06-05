@@ -14,7 +14,10 @@ export const BoxPokemon = ({item}: Props) => {
   const navigation = useNavigation();
 
   const onPress = () => {
-    navigation.navigate('Pokemon', {pokemon: item});
+    navigation.navigate('Pokedex', {
+      screen: 'PokemonDetail',
+      params: {pokemon: item},
+    });
   };
 
   return (
