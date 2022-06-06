@@ -14,4 +14,4 @@ export type PokedexStackParamList = {
 export type HomeStackScreenProps<T extends keyof PokedexStackParamList> =
   NativeStackScreenProps<PokedexStackParamList, T>;
 
-export type PokemonStackParamList = HomeStackScreenProps<'PokemonDetail'>;
+export type PokemonDetailStackParamList = HomeStackScreenProps<'PokemonDetail'>;

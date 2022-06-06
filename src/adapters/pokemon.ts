@@ -1,11 +1,15 @@
-import {PokemonResponse, IPokemonState} from 'interfaces';
+import {
+  PokemonListResponse,
+  IPokemonState,
+  PokemonDetailRespose,
+} from 'interfaces';
 import {makePokemonIcon} from 'utils';
 
 export const makePokemonsFromResponse = ({
   count,
   next,
   results,
-}: PokemonResponse): IPokemonState => ({
+}: PokemonListResponse): IPokemonState => ({
   meta: {count, nextPage: next},
   results: results.map(({name, url}) => {
     const urlSplited = url.split('/');
@@ -18,3 +22,5 @@ export const makePokemonsFromResponse = ({
     };
   }),
 });
+
+export const createAddatedPokemon = (pokemon: PokemonDetailRespose) => pokemon;

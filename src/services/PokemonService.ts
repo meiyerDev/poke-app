@@ -8,8 +8,15 @@ const get = (url?: string): Promise<IPokemonState> => {
     .then(makePokemonsFromResponse);
 };
 
+const find = (idOrName: number | string): Promise<IPokemonState> => {
+  return fetch(`${BASE_POKEMON_API_URL}/${idOrName}`).then(response =>
+    response.json(),
+  );
+};
+
 export const PokemonService = {
   get,
+  find,
 };
 
 export default PokemonService;

@@ -6,6 +6,8 @@ import {PokemonService} from 'services';
 export interface IPokemonState {
   pokemons: IPokemon[];
   loading: boolean;
+  pokemonsVisited: IPokemon[];
+  pokemonSelected: IPokemon | null;
   meta: {
     nextPage: null | string;
   };
@@ -13,6 +15,8 @@ export interface IPokemonState {
 
 const POKEMON_INITIAL_STATE: IPokemonState = {
   pokemons: [],
+  pokemonsVisited: [],
+  pokemonSelected: null,
   loading: false,
   meta: {
     nextPage: null,
@@ -46,8 +50,30 @@ export const PokemonProvider: FC = ({children}) => {
     );
   };
 
+  const getPokemon = useCallback(
+    (isOrName: string | number) => {
+      const pokemonFounded = state.pokemonsVisited.find(
+        pokemon => pokemon.id === isOrName || pokemon.name === isOrName,
+      );
+
+      if (pokemonFounded) {
+        dispatch({
+          type: PokemonActions.setSelected,
+          payload: {pokemon: pokemonFounded},
+        });
+        return Promise.resolve();
+      }
+
+      return PokemonService.find(isOrName).then(response => {
+        console.log(response);
+      });
+    },
+    [state.pokemonsVisited],
+  );
+
   return (
-    <PokemonContext.Provider value={{...state, getPokemons, getNextPage}}>
+    <PokemonContext.Provider
+      value={{...state, getPokemons, getNextPage, getPokemon}}>
       {children}
     </PokemonContext.Provider>
   );
