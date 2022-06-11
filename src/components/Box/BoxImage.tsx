@@ -2,10 +2,16 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SvgUri} from 'react-native-svg';
 
-export const BoxImage = ({uri}: {uri: string}) => {
+type Props = {
+  uri: string;
+  width?: number;
+  height?: number;
+};
+
+export const BoxImage = ({uri, width = 90, height = 90}: Props) => {
   return (
     <View style={styles.container}>
-      <SvgUri uri={uri} width={90} height={90} />
+      <SvgUri uri={uri} width={width} height={height} />
     </View>
   );
 };
@@ -15,9 +21,5 @@ const styles = StyleSheet.create({
     position: 'relative',
     bottom: '10%',
     alignSelf: 'center',
-  },
-  image: {
-    maxWidth: 90,
-    maxHeight: 90,
   },
 });

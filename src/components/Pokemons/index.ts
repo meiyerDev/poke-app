@@ -1,2 +1,2 @@
-export * from './BoxPokemon';
+export * from './ListBoxPokemon';
 export * from './ListPokemons';

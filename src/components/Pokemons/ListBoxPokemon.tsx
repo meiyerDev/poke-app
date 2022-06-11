@@ -3,12 +3,13 @@ import {TouchableWithoutFeedback, View, StyleSheet} from 'react-native';
 import {Box, BoxTitle, BoxImage} from 'components/Box';
 import {IPokemon} from 'interfaces';
 import {useNavigation} from '@react-navigation/native';
+import {camelCase, makePokemonId} from 'utils';
 
 type Props = {
   item: IPokemon;
 };
 
-export const BoxPokemon = ({item}: Props) => {
+export const ListBoxPokemon = ({item}: Props) => {
   const [isPress, setIsPress] = useState(false);
 
   const navigation = useNavigation();
@@ -28,7 +29,10 @@ export const BoxPokemon = ({item}: Props) => {
       <View style={styles.container}>
         <Box isActive={isPress}>
           <BoxImage uri={item.front_default} />
-          <BoxTitle titleLeft={item.id.toString()} titleRight={item.name} />
+          <BoxTitle
+            titleLeft={makePokemonId(item.id)}
+            titleRight={camelCase(item.name)}
+          />
         </Box>
       </View>
     </TouchableWithoutFeedback>

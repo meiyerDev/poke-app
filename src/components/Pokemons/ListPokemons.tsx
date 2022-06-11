@@ -1,7 +1,7 @@
 import React from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 import {usePokemon} from 'hooks/use-pokemon';
-import {BoxPokemon} from './BoxPokemon';
+import {ListBoxPokemon} from './ListBoxPokemon';
 
 export const ListPokemons = () => {
   const {pokemons, getPokemons, getNextPage, loading} = usePokemon();
@@ -12,7 +12,7 @@ export const ListPokemons = () => {
       initialNumToRender={20}
       refreshing={loading}
       keyExtractor={item => item.id.toString()}
-      renderItem={({item}) => <BoxPokemon item={item} />}
+      renderItem={({item}) => <ListBoxPokemon item={item} />}
       onEndReachedThreshold={0.5}
       onRefresh={getPokemons}
       onEndReached={getNextPage}

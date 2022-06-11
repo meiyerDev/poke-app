@@ -1,6 +1,5 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
-import {camelCase} from 'utils/camelCase';
 
 interface Props {
   titleLeft: string;
@@ -10,10 +9,8 @@ interface Props {
 export const BoxTitle = ({titleLeft, titleRight}: Props) => {
   return (
     <View style={styles.container}>
-      <Text style={[styles.title, styles.titleLeft]}>
-        {`#${titleLeft.padStart(3, '0')}`}
-      </Text>
-      <Text style={styles.title}>{camelCase(titleRight)}</Text>
+      <Text style={[styles.title, styles.titleLeft]}>{titleLeft}</Text>
+      <Text style={styles.title}>{titleRight}</Text>
     </View>
   );
 };
