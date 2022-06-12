@@ -13,10 +13,10 @@ export const InputSearch = () => {
 
 const styles = StyleSheet.create({
   inputSearch: {
+    flex: 1,
     marginTop: 16,
     backgroundColor: '#F3F3F3',
     borderRadius: 32,
-    width: '90%',
     textAlign: 'center',
     height: 40,
     fontSize: 16,
