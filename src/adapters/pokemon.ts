@@ -24,10 +24,12 @@ export const createAddatedPokemonDetail = (
   height: pokemon.height,
   weight: pokemon.weight,
   types: pokemon.types.map(
-    ({type}) => PokemonType[type.name as keyof typeof PokemonType],
+    ({type}) =>
+      PokemonType[type.name.toUpperCase() as keyof typeof PokemonType] ??
+      PokemonType.UNKNOWN,
   ),
   stats: pokemon.stats.map(({base_stat, stat}) => ({
     base: base_stat,
-    name: stat.name,
+    name: stat.name.replace(/-/, ' '),
   })),
 });

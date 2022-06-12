@@ -9,6 +9,7 @@ export interface IPokemonContext {
   getPokemons: () => Promise<void>;
   getNextPage: () => Promise<void>;
   getPokemon: (isOrName: string | number) => Promise<void>;
+  resetPokemonSelected: () => void;
 }
 
 export const PokemonContext = createContext({} as IPokemonContext);

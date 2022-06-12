@@ -6,6 +6,7 @@ export enum PokemonActions {
   setMore = '[PokemonActions] - Set more pokemons',
   setSelected = '[PokemonActions] - Set pokemon selected',
   setFounded = '[PokemonActions] - Set pokemon founded',
+  resetSelected = '[PokemonActions] - Reset pokemon selected',
   loading = '[PokemonActions] - Set loading',
 }
 
@@ -26,6 +27,9 @@ type IAction =
   | {
       type: PokemonActions.setFounded;
       payload: {pokemon: Required<IPokemon>};
+    }
+  | {
+      type: PokemonActions.resetSelected;
     };
 
 export const pokemonReducer = (
@@ -75,6 +79,11 @@ export const pokemonReducer = (
         pokemonsVisited: isVisited
           ? state.pokemonsVisited
           : [...state.pokemonsVisited, pokemonFounded],
+      };
+    case PokemonActions.resetSelected:
+      return {
+        ...state,
+        pokemonSelected: null,
       };
     default:
       return state;

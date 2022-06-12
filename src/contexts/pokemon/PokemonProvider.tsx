@@ -83,9 +83,21 @@ export const PokemonProvider: FC = ({children}) => {
     [state.pokemonsVisited, state.pokemons],
   );
 
+  const resetPokemonSelected = useCallback(() => {
+    dispatch({
+      type: PokemonActions.resetSelected,
+    });
+  }, []);
+
   return (
     <PokemonContext.Provider
-      value={{...state, getPokemons, getNextPage, getPokemon}}>
+      value={{
+        ...state,
+        getPokemons,
+        getNextPage,
+        getPokemon,
+        resetPokemonSelected,
+      }}>
       {children}
     </PokemonContext.Provider>
   );

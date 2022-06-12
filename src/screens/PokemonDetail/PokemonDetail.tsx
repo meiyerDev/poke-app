@@ -4,13 +4,14 @@ import {Box, BoxImage} from 'components/Box';
 import {usePokemon} from 'hooks';
 import {StyleSheet, View, Text} from 'react-native';
 import {camelCase, makePokemonId} from 'utils';
+import {ListPokemonStat, ListPokemonType} from 'components';
 
 export const PokemonDetail = ({
   route: {
     params: {pokemon: initialPokemon},
   },
 }: PokemonDetailStackParamList) => {
-  const {getPokemon, pokemonSelected} = usePokemon();
+  const {getPokemon, pokemonSelected, resetPokemonSelected} = usePokemon();
 
   const pokemon = useMemo(
     () => pokemonSelected ?? initialPokemon,
@@ -18,12 +19,15 @@ export const PokemonDetail = ({
   );
 
   useEffect(() => {
-    getPokemon(pokemon.id);
-  }, [getPokemon, pokemon.id]);
+    getPokemon(initialPokemon.id);
+    return () => {
+      resetPokemonSelected();
+    };
+  }, [getPokemon, initialPokemon.id, resetPokemonSelected]);
 
   return (
     <View style={styles.container}>
-      <View style={styles.containerImage}>
+      <View style={styles.containerContent}>
         <View style={styles.containerTitle}>
           <Text style={[styles.texts, styles.idPokemon]}>
             {makePokemonId(pokemon.id)}
@@ -34,12 +38,24 @@ export const PokemonDetail = ({
           <BoxImage uri={pokemon.front_default} width={200} height={200} />
         </Box>
       </View>
+
+      {pokemon.details && (
+        <>
+          <View style={styles.containerContent}>
+            <ListPokemonType types={pokemon.details.types} />
+          </View>
+          <View style={styles.containerInfo}>
+            <ListPokemonStat stats={pokemon.details.stats} />
+          </View>
+        </>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginTop: 10,
   },
   containerTitle: {
@@ -48,8 +64,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
   },
-  containerImage: {
+  containerContent: {
     paddingHorizontal: 20,
+  },
+  containerInfo: {
+    flex: 1,
+    marginTop: 20,
+    backgroundColor: '#F289FD',
+    borderTopStartRadius: 50,
+    borderTopEndRadius: 50,
+    paddingTop: 32,
+    paddingHorizontal: 40,
   },
   texts: {
     fontSize: 18,
