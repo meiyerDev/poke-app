@@ -1,26 +1,33 @@
+import {PokemonType} from 'constants';
 import {
-  PokemonListResponse,
-  IPokemonState,
   PokemonDetailRespose,
+  IPokemonDetail,
+  IPokemon,
+  PokemonResult,
 } from 'interfaces';
 import {makePokemonIcon} from 'utils';
 
-export const makePokemonsFromResponse = ({
-  count,
-  next,
-  results,
-}: PokemonListResponse): IPokemonState => ({
-  meta: {count, nextPage: next},
-  results: results.map(({name, url}) => {
-    const urlSplited = url.split('/');
-    const id = parseInt(urlSplited[urlSplited.length - 2], 10);
-    return {
-      id,
-      name,
-      url,
-      front_default: makePokemonIcon(id),
-    };
-  }),
-});
+export const createAddatedPokemon = ({name, url}: PokemonResult): IPokemon => {
+  const urlSplited = url.split('/');
+  const id = parseInt(urlSplited[urlSplited.length - 2], 10);
+  return {
+    id,
+    name,
+    url,
+    front_default: makePokemonIcon(id),
+  };
+};
 
-export const createAddatedPokemon = (pokemon: PokemonDetailRespose) => pokemon;
+export const createAddatedPokemonDetail = (
+  pokemon: PokemonDetailRespose,
+): IPokemonDetail => ({
+  height: pokemon.height,
+  weight: pokemon.weight,
+  types: pokemon.types.map(
+    ({type}) => PokemonType[type.name as keyof typeof PokemonType],
+  ),
+  stats: pokemon.stats.map(({base_stat, stat}) => ({
+    base: base_stat,
+    name: stat.name,
+  })),
+});

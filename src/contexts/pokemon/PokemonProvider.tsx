@@ -2,12 +2,14 @@ import React, {FC, useCallback, useReducer} from 'react';
 import {IPokemon} from 'interfaces';
 import {PokemonContext, pokemonReducer, PokemonActions} from '.';
 import {PokemonService} from 'services';
+import {createAddatedPokemonDetail} from 'adapters';
+import {createAddatedPokemon} from '../../adapters/pokemon';
 
 export interface IPokemonState {
   pokemons: IPokemon[];
   loading: boolean;
-  pokemonsVisited: IPokemon[];
-  pokemonSelected: IPokemon | null;
+  pokemonsVisited: Required<IPokemon>[];
+  pokemonSelected: Required<IPokemon> | null;
   meta: {
     nextPage: null | string;
   };
@@ -51,9 +53,9 @@ export const PokemonProvider: FC = ({children}) => {
   };
 
   const getPokemon = useCallback(
-    (isOrName: string | number) => {
+    (idOrName: string | number) => {
       const pokemonFounded = state.pokemonsVisited.find(
-        pokemon => pokemon.id === isOrName || pokemon.name === isOrName,
+        pokemon => pokemon.id === idOrName || pokemon.name === idOrName,
       );
 
       if (pokemonFounded) {
@@ -64,11 +66,21 @@ export const PokemonProvider: FC = ({children}) => {
         return Promise.resolve();
       }
 
-      return PokemonService.find(isOrName).then(response => {
-        console.log(response);
+      return PokemonService.find(idOrName).then(response => {
+        const pokemonDetail = createAddatedPokemonDetail(response);
+        const pokemon =
+          state.pokemons.find(
+            poke => poke.id === idOrName || poke.name === idOrName,
+          ) ??
+          createAddatedPokemon({name: response.name, url: `/${response.id}/`});
+
+        dispatch({
+          type: PokemonActions.setFounded,
+          payload: {pokemon: {...pokemon, details: pokemonDetail}},
+        });
       });
     },
-    [state.pokemonsVisited],
+    [state.pokemonsVisited, state.pokemons],
   );
 
   return (

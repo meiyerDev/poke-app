@@ -1,5 +1,5 @@
 import {IPokemon} from 'interfaces';
-import {IPokemonState} from '.';
+import {IPokemonState} from './PokemonProvider';
 
 export enum PokemonActions {
   setAll = '[PokemonActions] - Set all pokemons',
@@ -21,11 +21,11 @@ type IAction =
     }
   | {
       type: PokemonActions.setSelected;
-      payload: {pokemon: IPokemon};
+      payload: {pokemon: Required<IPokemon>};
     }
   | {
       type: PokemonActions.setFounded;
-      payload: {pokemon: IPokemon};
+      payload: {pokemon: Required<IPokemon>};
     };
 
 export const pokemonReducer = (

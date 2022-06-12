@@ -3,8 +3,8 @@ import {createContext} from 'react';
 
 export interface IPokemonContext {
   pokemons: IPokemon[];
-  pokemonsVisited: IPokemon[];
-  pokemonSelected: IPokemon | null;
+  pokemonsVisited: Required<IPokemon>[];
+  pokemonSelected: Required<IPokemon> | null;
   loading: boolean;
   getPokemons: () => Promise<void>;
   getNextPage: () => Promise<void>;

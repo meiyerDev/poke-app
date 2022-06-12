@@ -5,6 +5,7 @@ export type IPokemon = {
   name: string;
   url: string;
   front_default: string;
+  details?: null | IPokemonDetail;
 };
 
 export type IPokemonDetail = {
