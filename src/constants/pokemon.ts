@@ -26,3 +26,26 @@ export enum PokemonType {
   UNKNOWN = 'unknown',
   SHADOW = 'shadow',
 }
+
+export const PokemonTypeColor = {
+  [PokemonType.NORMAL]: '#A8A77A',
+  [PokemonType.FIGHTING]: '#C22E28',
+  [PokemonType.FLYING]: '#A98FF3',
+  [PokemonType.POISON]: '#A33EA1',
+  [PokemonType.GROUND]: '#E2BF65',
+  [PokemonType.ROCK]: '#B6A136',
+  [PokemonType.BUG]: '#A6B91A',
+  [PokemonType.GHOST]: '#735797',
+  [PokemonType.STEEL]: '#B7B7CE',
+  [PokemonType.FIRE]: '#EE8130',
+  [PokemonType.WATER]: '#6390F0',
+  [PokemonType.GRASS]: '#7AC74C',
+  [PokemonType.ELECTRIC]: '#F7D02C',
+  [PokemonType.PSYCHIC]: '#F95587',
+  [PokemonType.ICE]: '#96D9D6',
+  [PokemonType.DRAGON]: '#6F35FC',
+  [PokemonType.DARK]: '#705746',
+  [PokemonType.FAIRY]: '#D685AD',
+  [PokemonType.UNKNOWN]: '#A8A77A',
+  [PokemonType.SHADOW]: '#000000',
+} as const;
